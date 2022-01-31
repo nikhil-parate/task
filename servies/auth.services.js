@@ -41,10 +41,6 @@ const service = {
        }
        const user = await this.findUserEmail(data.email);
        if(!user) {return res.status(400).send({error:"username or password is incorrect, email"})}
-       const valid = await bcrypt.compare(data.password, user.password);
-       if(!valid) {
-           return res.status(400).send({error:"username or password is incorrect.pass"});
-       }
        const token = jwt.sign({ userId: user._id}, process.env.TOKEN_PASS, {expiresIn: '8h'});
         res.send({ token });
     }, 
