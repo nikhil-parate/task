@@ -84,6 +84,17 @@ const service = {
         res.send({message:"policy updated"});
      },
      
+     async newpolicyUpdate(data,res) {
+        const {error} = policyschema.validate(data);
+        if(error) {
+            return res.send({error: error.details[0].message});
+        }
+        const user = await this.findnewPolicyEmail(data.email);
+       if(user) {return res.status(400).send({error:"user already accepted policy or email id is duplicate"})}
+        await mongo.db.collection('newpolicy').insertOne(data);
+        res.send({message:"policy updated"});
+     },
+    
     async getdata(data,res) {
          return await mongo.db.collection('policy').find().toArray();
      },
@@ -104,6 +115,10 @@ const service = {
     
     findPolicyEmail(email) {
         return mongo.db.collection("policy").findOne({email});
+    },
+    
+    findnewPolicyEmail(email) {
+        return mongo.db.collection("newpolicy").findOne({email});
     },
    }
    
