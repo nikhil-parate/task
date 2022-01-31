@@ -12,7 +12,9 @@ const logschema = joi.object({
     email: joi.string().required(),
     password: joi.string().alphanum().min(6).required()
 });
-
+const policyschema = joi.object({
+    email: joi.string().required().email(),
+});
 const service = {
     async registerCustomer(data,res) {
         const {error} = regschema.validate(data);
@@ -69,6 +71,12 @@ const service = {
      }, 
     
      async policyUpdate(data,res) {
+         const {error} = policyschema.validate(data);
+        if(error) {
+            return res.send({error: error.details[0].message});
+        }
+        const user = await this.findPolicyEmail(data.email);
+       if(user) {return res.status(400).send({error:"user already accepted policy or email id is duplicate"})}
         await mongo.db.collection('policy').insertOne(data);
         res.send({message:"policy updated"});
      },
@@ -83,6 +91,10 @@ const service = {
 
     findCustomerEmail(email) {
         return mongo.db.collection("customer").findOne({email});
+    },
+    
+    findPolicyEmail(email) {
+        return mongo.db.collection("policy").findOne({email});
     },
    }
    
