@@ -14,6 +14,9 @@ const logschema = joi.object({
 });
 const policyschema = joi.object({
     email: joi.string().required().email(),
+     policy1: joi.string().required(),
+    policy3: joi.string().required(),
+    policy3: joi.string().required(),
 });
 const service = {
     async registerCustomer(data,res) {
