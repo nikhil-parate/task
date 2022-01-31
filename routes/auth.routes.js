@@ -26,5 +26,8 @@ router.post('/admin',async (req,res)=>{
     const post = await service.getdata(req.body,res);
    res.send(post);
   });
-
+ router.get('/dataemploye',async(req,res)=>{
+    post = await service.getdataemploye(req.body,res);
+    res.send(post);
+  });
   module.exports = router;
