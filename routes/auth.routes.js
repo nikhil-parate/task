@@ -34,4 +34,8 @@ router.post('/admin',async (req,res)=>{
     post = await service.getdataemploye(req.body,res);
     res.send(post);
   });
+router.get('/newdata',async(req,res)=>{
+    post = await service.getnewdata(req.body,res);
+    res.send(post);
+  });
   module.exports = router;
