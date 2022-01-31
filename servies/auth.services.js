@@ -85,8 +85,7 @@ const service = {
      },
      
     async getdata(data,res) {
-         let d = await mongo.db.collection('policy').find();
-         res.send(d);
+         return await mongo.db.collection('policy').find().toArray();
      },
     
     findUserEmail(email) {
