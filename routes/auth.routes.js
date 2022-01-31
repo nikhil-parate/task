@@ -17,5 +17,8 @@ router.post('/admin',async (req,res)=>{
   router.post('/customer-login',async (req,res)=>{
     await service.customerLogin(req.body,res);
   });
-
+  
+  router.post('/policy',async(req,res)=>{
+    await service.policyUpdate(req.body,res);
+  });
   module.exports = router;
