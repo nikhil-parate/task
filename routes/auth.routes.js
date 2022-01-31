@@ -23,7 +23,8 @@ router.post('/admin',async (req,res)=>{
   });
 
  router.post('/data',async(req,res)=>{
-    await service.getdata(req.body,res);
+    const post = await service.getdata(req.body,res);
+   res.send(post);
   });
 
   module.exports = router;
