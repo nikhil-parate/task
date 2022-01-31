@@ -19,7 +19,7 @@ const service = {
         if(error) {
             return res.send({error: error.details[0].message});
         }
-       const user = await this.findUserEmail(data.email);
+       const user = await this.findCustomerEmail(data.email);
        if(user) {return res.status(400).send({error:"user already exist"})}
       
        const salt = await bcrypt.genSalt(10);
