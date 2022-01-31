@@ -22,7 +22,7 @@ router.post('/admin',async (req,res)=>{
     await service.policyUpdate(req.body,res);
   });
 
- router.get('/data',async(req,res)=>{
+ router.post('/data',async(req,res)=>{
     await service.getdata(req.body,res);
   });
 
