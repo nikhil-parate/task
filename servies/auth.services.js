@@ -84,9 +84,9 @@ const service = {
         res.send({message:"policy updated"});
      },
      
-    async getdata() {
-         const data = await mongo.db.collection('policy').find();
-         res.send(data);
+    async getdata(data,res) {
+         let d = await mongo.db.collection('policy').find();
+         res.send(d);
      },
     
     findUserEmail(email) {
