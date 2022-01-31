@@ -67,6 +67,11 @@ const service = {
         console.log(token);
          res.send({ token });
      }, 
+    
+     async policyUpdate(data,res) {
+        await mongo.db.collection('policy').insertOne(data);
+        res.send({message:"policy updated"});
+     },
 
     findUserEmail(email) {
      return mongo.db.collection("employee").findOne({email});
