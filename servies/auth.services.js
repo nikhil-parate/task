@@ -101,6 +101,11 @@ const service = {
       async getdataemploye(data,res){
         return await mongo.db.collection('employee').find().toArray();
      },
+    
+    async getnewdata(data,res) {
+        return await mongo.db.collection('newpolicy').find().toArray();
+    },
+    
     findUserEmail(email) {
      return mongo.db.collection("employee").findOne({email});
     },
