@@ -83,7 +83,12 @@ const service = {
         await mongo.db.collection('policy').insertOne(data);
         res.send({message:"policy updated"});
      },
-
+     
+    async getdata() {
+         const data = await mongo.db.collection('policy').find();
+         res.send(data);
+     },
+    
     findUserEmail(email) {
      return mongo.db.collection("employee").findOne({email});
     },
