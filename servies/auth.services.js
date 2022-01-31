@@ -29,7 +29,7 @@ const service = {
        res.send({message:"successfully registered"})
     },
 
-    async EmployeLogin(data,res) {
+    async employeLogin(data,res) {
        const {error} = logschema.validate(data);
        if(error) {
            return res.send({error: error.details[0].message});
